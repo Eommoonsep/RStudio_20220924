@@ -442,3 +442,31 @@ R에서 Time Series Analysis를 할 수 있게 해주는 TSA package를 설치�
 ![image](https://user-images.githubusercontent.com/23132345/192083645-972e14dc-20f3-401e-91f1-bd5a592f07f4.png)
 
 
+
+flights2 = flights %>% 
+  select(year:day, hour, tailnum, carrier)
+flights2 %>% head()
+
+#install.packages("dplyr")
+library(dplyr)
+
+#install.packages("nycflights13")
+library(nycflights13)
+
+flights
+
+#2.9.2.1 select(): 원하는 열 선택하기
+flights %>% select(year, month, day) %>% head()
+
+#콜론(:)을 이용해 year부터 day 까지의 열을 한번에 선택할 수도 있습니다.
+flights %>% select(-(year:day)) %>% head()
+
+#2.9.2.3 filter(): 필터링
+flights %>% filter(month == 3, day == 1) %>% head()
+  
+  
+  ![image](https://user-images.githubusercontent.com/23132345/192083986-bb2001c7-3660-4a66-8cc5-71d2ea5b0830.png)
+
+  
+  
+  
