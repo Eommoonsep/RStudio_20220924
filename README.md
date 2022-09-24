@@ -6,6 +6,10 @@ https://hyunyulhenry.github.io/r_basic/
 https://hyunyulhenry.github.io/r_basic/#r-%EA%B8%B0%EC%B4%88-%EB%B0%B0%EC%9A%B0%EA%B8%B0
 
 
+>> ★최상위 패키지 통 다운로드 ★
+>> install.packages("tidyverse") 
+
+
 
 11:24
 #dbl_var = c(1, 2.5, 4.5)
@@ -419,3 +423,22 @@ The following object is masked from ‘package:magrittr’:
 
 증적:
 ![image](https://user-images.githubusercontent.com/23132345/192078475-2124548b-c58e-477a-84b6-c7809626a5d6.png)
+
+
+
+R에서 Time Series Analysis를 할 수 있게 해주는 TSA package를 설치해보도록 하겠습니다. 
+ 
+(a) R Console 창에 install.packages("TSA") 함수 입력
+ 
+
+
+
+ > install.packages("TSA") 
+출처: https://rfriend.tistory.com/7 [R, Python 분석과 프로그래밍의 친구 (by R Friend):티스토리]
+
+>> ★패키지 통 다운로드 ★
+>> install.packages("tidyverse") 
+
+![image](https://user-images.githubusercontent.com/23132345/192083645-972e14dc-20f3-401e-91f1-bd5a592f07f4.png)
+
+
