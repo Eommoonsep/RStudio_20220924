@@ -228,3 +228,272 @@ back2wide = long %>% pivot_wider(names_from = 'years', values_from = 'cases')
 print(back2wide)
 
 
+#2.9.1.3 separate(): 하나의 열을 여러 열로 나누기
+table3
+
+table3 %>% 
+  separate(rate, into = c("cases", "population"))
+
+
+#2.9.1.4 unite(): 여러 열을 하나로 합치기
+table5
+
+table5 %>% 
+  unite(new, century, year, sep = "_")
+
+#2.9.1.5 tidyr 패키지의 기타 함수
+score = tribble(
+  ~ person, ~ Math, ~ Computer,
+  "Henry",  1,         7,
+  NA,       2,         10,
+  NA,       NA,        9,
+  "David",  1,         4
+)
+score
+#score의 2번째와 3번째 행에 NA 데이터가 있어 이를 채워줄 필요가 있습니다.
+score %>% 
+  fill(person, Math)
+
+score %>% replace_na(replace = list(person = "unknown", Math = 0))
+
+
+
+##★2.9.2 dplyr 패키지를 이용한 데이터 변형하기
+library(dplyr)
+#
+library(nycflights13)
+#
+flights
+
+
+
+
+
+#3 ggplot을 이용한 데이터 시각화
+#그래픽 문법
+library(tidyr)
+library(dplyr)
+
+#3.2 데이터셋: 다이아몬드
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+# 
+# R에서 Time Series Analysis를 할 수 있게 해주는 TSA package를 설치해보도록 하겠습니다. 
+# 
+# (a) R Console 창에 install.packages("TSA") 함수 입력
+# > install.packages("TSA") 
+# 출처: https://rfriend.tistory.com/7 [R, Python 분석과 프로그래밍의 친구 (by R Friend):티스토리]
+# 
+
+
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  facet_grid(. ~ cut)S
+
+
+flights %>% filter(month == 3, day == 1) %>% head()
+
+
+
+flights2 = flights %>% 
+  select(year:day, hour, tailnum, carrier)
+flights2 %>% head()
+
+#install.packages("dplyr")
+library(dplyr)
+
+#install.packages("nycflights13")
+library(nycflights13)
+
+flights
+
+#2.9.2.1 select(): 원하는 열 선택하기
+flights %>% select(year, month, day) %>% head()
+
+#콜론(:)을 이용해 year부터 day 까지의 열을 한번에 선택할 수도 있습니다.
+flights %>% select(-(year:day)) %>% head()
+
+#2.9.2.3 filter(): 필터링
+flights %>% filter(month == 3, day == 3) %>% head()
+
+
+
+flights
+
+flights %>% summarize(max_dep = max(dep_time, na.rm = TRUE),
+                      min_dep = min(dep_time, na.rm = TRUE))
+
+#2.9.2.5 group_by(): 원하는 조건으로 그룹화
+by_day = flights %>% group_by(year, month, day)
+by_day %>% head()
+  
+#summarize() 함수를 통해 max_dep에는 dep_time의 최대값을, min_dep에는 dep_time의 최소값을 구해줍니다. na.rm 인자를 TRUE로 설정하여 NA 데이터는 제거해 줍니다.
+by_day %>%
+  summarise(delay = mean(dep_delay, na.rm = TRUE)) %>%
+  head()
+
+#해당 데이터는 그룹별로 묶여 있으므로, summarise() 함수를 적용하면 각 그룹(year, month, day) 별로 dep_delay의 평균을 구합니다.
+flights %>% group_by(dest) %>%
+  summarise(
+    count = n(),
+    dist = mean(distance, na.rm = TRUE),
+    delay = mean(arr_delay, na.rm = TRUE)
+  )
+
+#2.9.2.6 arrange(): 데이터 정렬하기
+#arrange() 함수를 통해 원하는 열을 기준으로 데이터를 순서대로 정렬할 수 있으며, 오름차순을 기본으로 합니다.
+
+flights %>% arrange(year, month, day, dep_time, sched_dep_time) %>% head() 
+
+flights
+flights2
+
+#2.9.2.7 *_join(): 데이터 합치기
+flights2 = flights %>%
+  select(year:day, hour, tailnum, carrier)
+flights2 %>% head()
+
+
+#3 ggplot을 이용한 데이터 시각화
+
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+
+
+data()
+ggplot(data = diamonds, aes(x = carat, y = price))
+#x축과 y축에 우리가 매핑한 carat과 price가 표현되었지만, 어떠한 모양(Geometrics)으로 시각화를 할지 정의하지 않았으므로 빈 그림이 생성됩니다. 다음으로 Geometrics을 통해 데이터를 그림으로 표현해주도록 하겠습니다.
+
+#geom_point() 
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+#일반적으로 Data는 ggplot() 함수 내에서 정의하기 보다는, dplyr 패키지의 함수들을 이용하여 데이터를 가공한 후 파이프 오퍼레이터(%>%)를 통해 연결합니다.
+library(magrittr)
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point(aes(color = cut, shape = cut))
+
+
+#3.4 Facets
+#Facets은 여러 집합을 하나의 그림에 표현하기 보다 하위 집합으로 나누어 시각화하는 요소입니다.
+
+
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  facet_grid(. ~ cut)
+
+
+
+#★3.5 Statistics★
+#Statistics는 통계값을 나타내는 요소입니다.
+
+diamonds %>%
+  ggplot(aes(x = color  , y = carat)) +
+  stat_summary_bin(fun = "mean", geom = "bar")
+
+
+library(dplyr)
+diamonds %>%
+  group_by(color) %>%
+  summarize(carat = mean(carat)) %>%
+  ggplot(aes(x = color, y = carat)) +
+  geom_col()
+
+#3.7 Theme
+#Theme은 그림의 제목, 축 제목, 축 단위, 범례, 디자인 등 그림을 꾸며주는 역할을 담당합니다.
+
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point(aes(color = cut)) +
+  theme_bw() +
+  labs(title = 'Relation between Carat & Price',
+       x = 'Carat', y = 'Price') +
+  theme(legend.position = 'bottom',
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank()
+  ) +
+  scale_y_continuous(
+    labels = function(x) {
+      paste0('$', 
+             format(x, big.mark = ','))
+    })
+
+
+
+#4 데이터분석 실습하기
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(ggplot2)
+library(readxl)
+library(haven)
+library(stringr)
+
+raw = read_spss('Koweps_hpc16_2021_beta1.sav')
+#Koweps_hpc16_2021_beta1.sav
+#https://github.com/hyunyulhenry/r_basic/blob/master/data/Koweps_hpc16_2021_beta1.sav
+
+welfare = raw %>% select('h16_g3',   # 성별
+                         'h16_g4',   # 태어난 연도
+                         'h16_g6',   # 교육 수준
+                         'h16_eco9', # 직종 코드
+                         'h16_reg7', # 지역 코드
+                         'p1602_8aq1' # 월급
+) %>%
+  set_colnames(c('성별', '연도', '교육', '직종', '지역', '월급'))
+
+#
+
+#4.1 성별에 따른 월급 차이
+welfare %>%
+  select(성별) %>%
+  table()
+
+#
+welfare = welfare %>%
+  mutate(성별 = if_else(성별 == 1, '남', '여'))
+
+#
+welfare %>%
+  select(성별) %>%
+  ggplot(aes(x = 성별)) +
+  geom_bar()
+#4.2 나이에 따른 월급의 관계
+#이제 나이에 따른 월급을 살펴봅시다.
+welfare = welfare %>%
+  mutate(나이 = 2021 - 연도 + 1) 
+#
+welfare %>%
+  filter(!is.na(월급)) %>%
+  group_by(나이) %>%
+  summarise(평균월급 = median(월급)) %>%
+  ggplot(aes(x = 나이, y = 평균월급)) +
+  geom_line()
+  geom_vline(xintercept = 45, color ='red', linetype = 2) +
+  geom_vline(xintercept = 60, color = 'red')
+
+#45세 가량 피크를 찍은 후, 점차 감소하는 모습을 보입니다. 70세부터는 실질적으로 수입이 없는 모습입니다. 이번에는 연령대를 나눠보도록 하겠습니다. 30세 미만은 초년, 50세 이하는 중년, 그 이상은 노년으로 구분합니다.
+  welfare = welfare %>%
+    mutate(연령대 = if_else(나이 < 30, '초년', if_else(나이 <= 50, "중년", "노년"))) 
+
+#이번에는 연령대 별 월급의 차이를 살펴보겠습니다.
+  welfare %>%
+    filter(!is.na(월급)) %>% 
+    group_by(연령대) %>%
+    summarize(평균월급 = median(월급)) %>%
+    ggplot(aes(x = 연령대, y = 평균월급)) +
+    geom_col() +
+    scale_x_discrete(limits = c('초년', '중년', '노년'))
+    
+  
