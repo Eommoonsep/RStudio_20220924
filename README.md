@@ -583,4 +583,36 @@ welfare %>%
 ![image](https://user-images.githubusercontent.com/23132345/192085490-e9d39fa9-82e5-4218-b8b9-e8b4c41ab34a.png)
   
 
+
+#4.1 성별에 따른 월급 차이
+welfare %>%
+  select(성별) %>%
+  table()
+
+#
+welfare = welfare %>%
+  mutate(성별 = if_else(성별 == 1, '남', '여'))
+
+#
+welfare %>%
+  select(성별) %>%
+  ggplot(aes(x = 성별)) +
+  geom_bar()
+#4.2 나이에 따른 월급의 관계
+#이제 나이에 따른 월급을 살펴봅시다.
+welfare = welfare %>%
+  mutate(나이 = 2021 - 연도 + 1) 
+#
+welfare %>%
+  filter(!is.na(월급)) %>%
+  group_by(나이) %>%
+  summarise(평균월급 = median(월급)) %>%
+  ggplot(aes(x = 나이, y = 평균월급)) +
+  geom_line()
+  geom_vline(xintercept = 45, color ='red', linetype = 2) +
+  geom_vline(xintercept = 60, color = 'red')
+    
+증적:  
+![image](https://user-images.githubusercontent.com/23132345/192085642-4e45b4d4-dd4e-4bc1-99c3-a71def44720e.png)
+  
   
