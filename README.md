@@ -75,6 +75,35 @@ v1[v1 < 12 | v1 > 15]
 
 
 
+df = data.frame (col1 = 1:3,
+                 col2 = c ("this", "is", "text"),
+                 col3 = c (TRUE, FALSE, TRUE),
+                 col4 = c (2.5, 4.2, pi))
+str(df)
+
+'data.frame':	3 obs. of  4 variables:
+ $ col1: int  1 2 3
+ $ col2: chr  "this" "is" "text"
+ $ col3: logi  TRUE FALSE TRUE
+ $ col4: num  2.5 4.2 3.14
+ 
+ 
+ rbind(df)
+ > rbind(df)
+  col1 col2  col3     col4
+1    1 this  TRUE 2.500000
+2    2   is FALSE 4.200000
+3    3 text  TRUE 3.141593
+ 
+ 
+
+
+
+
+
+
+
+
 
 
 
