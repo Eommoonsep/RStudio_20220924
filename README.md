@@ -152,6 +152,63 @@ head(kospi_excel)
 
 
 
+#2.8 효율성과 가독성 높이기
+#금융 자산의 현재 가치는 다음과 같이 계산됩니다.
+#PV=FV/(1+r)n
+#즉, 1년 뒤에 110만원을 받는 돈의 현재가치는 110만원/(1+0.1)1=100만원 이라 볼 수 있습니다. 이러한 값을 구하기 위해 매번 계산기를 사용하기 보다는 함수를 이용하면, 훨씬 효율적인 작업이 가능합니다. 위의 수식을 함수로 나타내면 다음과 같습니다.
+#1.
+PV = function(FV, r, n) {
+  PV = FV / (1+r)^n
+  return(round(PV, 2))
+}
+
+
+#2.
+body(PV)
+{
+  PV = FV/(1 + r)^n
+  return(round(PV, 2))
+}
+
+#3.
+formals(PV)
+
+#4.
+environment(PV)
+
+#5.
+## <environment: R_GlobalEnv>
+
+PV(FV = 1000, r = 0.08, n =5)
+
+
+> PV = function(FV, r, n) {
++   PV = FV / (1+r)^n
++   return(round(PV, 2))
++ }
+> #
+> body(PV)
+{
+    PV = FV/(1 + r)^n
+    return(round(PV, 2))
+}
+> formals(PV)
+$FV
+
+
+$r
+
+
+$n
+
+
+> environment(PV)
+<environment: R_GlobalEnv>
+> PV(FV = 1000, r = 0.08, n =5)
+[1] 680.58
+
+![image](https://user-images.githubusercontent.com/23132345/192077846-41117728-7c02-4f26-9e3a-01e4bd4daba3.png)
+
 
 
 
