@@ -116,11 +116,17 @@ x = c(1:4, NA, 6:7, NA)
 x
 is.na(x)
 
-#2.6.4 결측치 처리하기
-x = c(1:4, NA, 6:7, NA)
+> #2.6.4 결측치 처리하기
+> x = c(1:4, NA, 6:7, NA)
+> x
+[1]  1  2  3  4 NA  6  7 NA
+> is.na(x)
+[1] FALSE FALSE FALSE FALSE  TRUE
+[6] FALSE FALSE  TRUE
 
-x
-is.na(x)
+![image](https://user-images.githubusercontent.com/23132345/192077573-1a02f523-d7b3-4299-8d5b-0e5f20d1e4bb.png)
+
+
 
 
 
