@@ -182,7 +182,49 @@ df %>%
                           .x == 43,
                           "UNKNOWN")))
 
+#
+#Analysis
+#
+
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(ggplot2)
+library(readxl)
+library(haven)
+library(stringr)
+
+raw = read_spss('Koweps_hpc16_2021_beta1.sav')
 ;
 
+
+welfare %>%
+  filter(소분류명 %in% income_bottom30) %>%
+  filter(!is.na(월급)) %>% 
+  group_by(소분류명, 성별) %>%
+  summarize(평균월급 = median(월급)) %>%
+  arrange(성별, desc(평균월급)) %>%
+  mutate(소분류명 = fct_reorder(소분류명, 성별)) %>%
+  ggplot(aes(x = 소분류명, y = 평균월급, fill = 성별)) +
+  geom_col(position = 'dodge') +
+  coord_flip() +
+  xlab('')
+
+#
+x = c(8, 3, -2, 5)
+if (any(x < 0)) {
+  print('x contains negative number')
+}
+
+#*2.9.1.1 세로로 긴 데이터 만들기
+library(tidyr)
+table4a
+long = table4a %>% pivot_longer(names_to = 'years', values_to = 'cases', -country)
+print(long)
+
+
+#2.9.1.2 pivot_wider(): 가로로 긴 데이터 만들기
+back2wide = long %>% pivot_wider(names_from = 'years', values_from = 'cases')
+print(back2wide)
 
 
