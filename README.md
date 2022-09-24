@@ -126,6 +126,30 @@ is.na(x)
 
 ![image](https://user-images.githubusercontent.com/23132345/192077573-1a02f523-d7b3-4299-8d5b-0e5f20d1e4bb.png)
 
+#2.7.3 엑셀 파일 불러오기 및 저장하기
+library(readxl)
+kospi_excel = read_excel('kospi.xlsx', sheet = 'kospi')
+head(kospi_excel)
+
+> #2.7.3 엑셀 파일 불러오기 및 저장하기
+> library(readxl)
+> kospi_excel = read_excel('kospi.xlsx', sheet = 'kospi')
+> head(kospi_excel)
+# A tibble: 6 × 3
+  Date                Close   Ret
+  <dttm>              <dbl> <dbl>
+1 2020-01-02 00:00:00 2175. -1.02
+2 2020-01-03 00:00:00 2176.  0.06
+3 2020-01-06 00:00:00 2155. -0.98
+4 2020-01-07 00:00:00 2176.  0.95
+5 2020-01-08 00:00:00 2151. -1.11
+6 2020-01-09 00:00:00 2186.  1.63
+
+
+
+
+![image](https://user-images.githubusercontent.com/23132345/192077608-0e1b9d6a-748b-4711-a105-505c18b6fda0.png)
+
 
 
 
