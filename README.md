@@ -527,3 +527,60 @@ diamonds %>%
   
   ![image](https://user-images.githubusercontent.com/23132345/192085020-be698eb5-cd3a-455c-a02c-c833973811dc.png)
   
+#3.4 Facets
+#Facets은 여러 집합을 하나의 그림에 표현하기 보다 하위 집합으로 나누어 시각화하는 요소입니다.
+
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  facet_grid(. ~ cut)
+
+  ![image](https://user-images.githubusercontent.com/23132345/192085096-5e2a1335-5580-4113-862a-a2b497917b11.png)
+  
+  
+
+#4 데이터분석 실습하기
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(ggplot2)
+library(readxl)
+library(haven)
+library(stringr)
+
+raw = read_spss('Koweps_hpc16_2021_beta1.sav')
+#Koweps_hpc16_2021_beta1.sav
+#https://github.com/hyunyulhenry/r_basic/blob/master/data/Koweps_hpc16_2021_beta1.sav
+
+welfare = raw %>% select('h16_g3',   # 성별
+                         'h16_g4',   # 태어난 연도
+                         'h16_g6',   # 교육 수준
+                         'h16_eco9', # 직종 코드
+                         'h16_reg7', # 지역 코드
+                         'p1602_8aq1' # 월급
+) %>%
+  set_colnames(c('성별', '연도', '교육', '직종', '지역', '월급'))
+
+#
+
+#4.1 성별에 따른 월급 차이
+welfare %>%
+  select(성별) %>%
+  table()
+
+#
+welfare = welfare %>%
+  mutate(성별 = if_else(성별 == 1, '남', '여'))
+
+#
+welfare %>%
+  select(성별) %>%
+  ggplot(aes(x = 성별)) +
+  geom_bar()
+
+
+
+![image](https://user-images.githubusercontent.com/23132345/192085490-e9d39fa9-82e5-4218-b8b9-e8b4c41ab34a.png)
+  
+
+  
