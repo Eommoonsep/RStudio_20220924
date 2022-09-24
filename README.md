@@ -515,5 +515,15 @@ head(diamonds)
 
     
   
+#geom_point() 
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+#일반적으로 Data는 ggplot() 함수 내에서 정의하기 보다는, dplyr 패키지의 함수들을 이용하여 데이터를 가공한 후 파이프 오퍼레이터(%>%)를 통해 연결합니다.
+library(magrittr)
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point(aes(color = cut, shape = cut))
   
+  ![image](https://user-images.githubusercontent.com/23132345/192085020-be698eb5-cd3a-455c-a02c-c833973811dc.png)
   
