@@ -1,6 +1,12 @@
 # RStudio_20220924
 RStudio_Memo_20220924
 
+https://hyunyulhenry.github.io/r_basic/
+
+https://hyunyulhenry.github.io/r_basic/#r-%EA%B8%B0%EC%B4%88-%EB%B0%B0%EC%9A%B0%EA%B8%B0
+
+
+
 11:24
 #dbl_var = c(1, 2.5, 4.5)
 print(dbl_var)
