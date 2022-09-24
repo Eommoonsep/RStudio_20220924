@@ -10,7 +10,7 @@ https://hyunyulhenry.github.io/r_basic/#r-%EA%B8%B0%EC%B4%88-%EB%B0%B0%EC%9A%B0%
 >> install.packages("tidyverse") 
 
 
-# impoent
+# importent
 # ggplot2
 # tidyr
 # dplyr
