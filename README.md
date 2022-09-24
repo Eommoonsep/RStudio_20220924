@@ -470,3 +470,50 @@ flights %>% filter(month == 3, day == 1) %>% head()
   
   
   
+flights
+
+flights %>% summarize(max_dep = max(dep_time, na.rm = TRUE),
+                      min_dep = min(dep_time, na.rm = TRUE))
+
+#2.9.2.5 group_by(): 원하는 조건으로 그룹화
+by_day = flights %>% group_by(year, month, day)
+by_day %>% head()
+  
+![image](https://user-images.githubusercontent.com/23132345/192084339-ba8c9385-4612-48b3-833f-02b0b20293ae.png)
+  
+#2.9.2.6 arrange(): 데이터 정렬하기
+#arrange() 함수를 통해 원하는 열을 기준으로 데이터를 순서대로 정렬할 수 있으며, 오름차순을 기본으로 합니다.
+
+flights %>% arrange(year, month, day, dep_time, sched_dep_time) %>% head() 
+
+flights
+flights2
+
+#2.9.2.7 *_join(): 데이터 합치기
+flights2 = flights %>%
+  select(year:day, hour, tailnum, carrier)
+flights2 %>% head()
+
+
+#3 ggplot을 이용한 데이터 시각화
+
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+
+  
+![image](https://user-images.githubusercontent.com/23132345/192084822-f510e804-ee3c-4c2d-bd8a-e9ef6f54d447.png)
+
+  
+  
+  
+  
+  ![image](https://user-images.githubusercontent.com/23132345/192084863-a1a6d035-c92c-486d-88e1-9ff08a4f607e.png)
+
+  
+  ![image](https://user-images.githubusercontent.com/23132345/192084901-c47d5ec0-26ac-4975-99df-f0854ed94537.png)
+
+    
+  
+  
+  
