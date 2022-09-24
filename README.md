@@ -212,3 +212,35 @@ $n
 
 
 
+#if구문 및 for 반복문 1 
+for (i in 1:100) {
+  #<code: do stuff here with i>
+}
+#if구문 및 for 반복문 2
+for (i in 2016:2020) {
+  output = paste("The year is", i)
+  print(output)
+}
+
+> #if구문 및 for 반복문 2
+> for (i in 2016:2020) {
++   output = paste("The year is", i)
++   print(output)
++ }
+[1] "The year is 2016"
+[1] "The year is 2017"
+[1] "The year is 2018"
+[1] "The year is 2019"
+[1] "The year is 2020"
+
+
+
+
+![image](https://user-images.githubusercontent.com/23132345/192077964-59316e24-57d8-4b32-b1ac-1e5a59ae3df5.png)
+증적
+
+
+
+
+
+
