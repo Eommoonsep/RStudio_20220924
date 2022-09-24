@@ -375,3 +375,47 @@ Error in dif(log(x)) : could not find function "dif"
 
 
 
+
+#2.9 데이터 구조 변형하기
+# 해당 작업은 tidyr 패키지와 dplyr 패키지를 이용해 매우 효율적으로 수행할 수 있으며, dplyr 패키지의 함수 중 일부는 SQL 구문과 매우 유사합니다.
+#2.9.1 tidyr 패키지를 이용한 데이터 모양 바꾸기
+#깔끔한 데이터(tidy data)는 다음과 같이 구성되어 있습니다.
+
+# 각 변수(variable)는 열로 구성됩니다.
+# 각 관측값(observation)은 행으로 구성됩니다.
+# 각 타입의 관측치는 테이블을 구성합니다.
+
+#2.9.1.1 pivot_longer(): 세로로 긴 데이터 만들기
+library(tidyr)
+table4a
+
+> #2.9.1.1 pivot_longer(): 세로로 긴 데이터 만들기
+> library(tidyr)
+Error in library(tidyr) : ‘tidyr’이라고 불리는 패키지가 없습니다
+> #2.9.1.1 pivot_longer(): 세로로 긴 데이터 만들기
+> library(tidyr)
+Error in library(tidyr) : ‘tidyr’이라고 불리는 패키지가 없습니다
+> table4a
+Error: object 'table4a' not found
+> #2.9.1.1 pivot_longer(): 세로로 긴 데이터 만들기
+> library(tidyr)
+
+다음의 패키지를 부착합니다: ‘tidyr’
+
+The following object is masked from ‘package:magrittr’:
+
+    extract
+
+> table4a
+# A tibble: 3 × 3
+  country     `1999` `2000`
+* <chr>        <int>  <int>
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766
+
+
+
+
+증적:
+![image](https://user-images.githubusercontent.com/23132345/192078475-2124548b-c58e-477a-84b6-c7809626a5d6.png)
