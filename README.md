@@ -242,5 +242,80 @@ for (i in 2016:2020) {
 
 
 
+#2.8.2.3 apply 계열 함수
+apply(x, MARGIN, FUN, ...)
+#
+head(mtcars)
+# 열의 평균
+apply(mtcars, 2, mean)
+
+> #
+> head(mtcars)
+                   mpg cyl disp  hp
+Mazda RX4         21.0   6  160 110
+Mazda RX4 Wag     21.0   6  160 110
+Datsun 710        22.8   4  108  93
+Hornet 4 Drive    21.4   6  258 110
+Hornet Sportabout 18.7   8  360 175
+Valiant           18.1   6  225 105
+                  drat    wt  qsec
+Mazda RX4         3.90 2.620 16.46
+Mazda RX4 Wag     3.90 2.875 17.02
+Datsun 710        3.85 2.320 18.61
+Hornet 4 Drive    3.08 3.215 19.44
+Hornet Sportabout 3.15 3.440 17.02
+Valiant           2.76 3.460 20.22
+                  vs am gear carb
+Mazda RX4          0  1    4    4
+Mazda RX4 Wag      0  1    4    4
+Datsun 710         1  1    4    1
+Hornet 4 Drive     1  0    3    1
+Hornet Sportabout  0  0    3    2
+Valiant            1  0    3    1
+> # 열의 평균
+> apply(mtcars, 2, mean)
+       mpg        cyl       disp 
+ 20.090625   6.187500 230.721875 
+        hp       drat         wt 
+146.687500   3.596563   3.217250 
+      qsec         vs         am 
+ 17.848750   0.437500   0.406250 
+      gear       carb 
+  3.687500   2.812500 
+
+증적
+![image](https://user-images.githubusercontent.com/23132345/192078085-a7d4796e-a8eb-41b5-baa1-2b4c2e9224a0.png)
+
+
+
+
+# 함수사용 예제 1
+data = list(item1 = 1:4,
+            item2 = rnorm(10),
+            item3 = rnorm(20, 1),
+            item4 = rnorm(100, 5))
+data
+
+lapply(data, mean)
+
+
+
+# 함수사용 예제 1
+data = list(item1 = 1:4,
+            item2 = rnorm(10),
+            item3 = rnorm(20, 1),
+            item4 = rnorm(100, 5))
+data
+
+lapply(data, mean)
+
+증적
+
+![image](https://user-images.githubusercontent.com/23132345/192078150-4b1b9773-288a-4368-ae0f-619b7e36b00e.png)
+
+
+
+
+
 
 
