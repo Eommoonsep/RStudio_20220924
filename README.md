@@ -98,10 +98,14 @@ str(df)
  
 
 
+v4 = c ("A", "B", "C")
+cbind(df, v4)
 
-
-
-
+> cbind(df, v4)
+  col1 col2  col3     col4 v4
+1    1 this  TRUE 2.500000  A
+2    2   is FALSE 4.200000  B
+3    3 text  TRUE 3.141593  C
 
 
 
