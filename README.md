@@ -10,6 +10,13 @@ https://hyunyulhenry.github.io/r_basic/#r-%EA%B8%B0%EC%B4%88-%EB%B0%B0%EC%9A%B0%
 >> install.packages("tidyverse") 
 
 
+# impoent
+# ggplot2
+# tidyr
+# dplyr
+# tidyverse / install.packages("tidyverse") >> *AllLibrary
+
+
 
 11:24
 #dbl_var = c(1, 2.5, 4.5)
